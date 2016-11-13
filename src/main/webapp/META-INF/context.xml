@@ -1,0 +1,22 @@
+<Context>
+    <!-- JDBC connection pool for auth users database -->
+    <Resource name="jdbc/welcome_authusers"
+              auth="Container"
+              type="javax.sql.DataSource"
+              username="SA"
+              password=""
+              driverClassName="org.hsqldb.jdbc.JDBCDriver"
+              url="jdbc:hsqldb:hsql://localhost:9001/authusers"
+              maxTotal="4"
+              maxIdle="2"/>
+
+    <!-- Datasource Realm -->
+    <Realm className="org.apache.catalina.realm.DataSourceRealm"
+           localDataSource="true"
+           dataSourceName="jdbc/welcome_authusers"
+           userTable="users"
+           userNameCol="user_name"
+           userCredCol="user_pass"
+           userRoleTable="users"
+           roleNameCol="role_name"/>
+</Context>
